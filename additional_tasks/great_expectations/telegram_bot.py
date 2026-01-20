@@ -31,12 +31,10 @@ except ImportError:
     BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
     BOT_NAME = os.getenv("TELEGRAM_BOT_NAME", "ItransitionProjectBot")
 
-# Strict validation - Fail if no token found
 if not BOT_TOKEN:
-    logger.critical("TELEGRAM_BOT_TOKEN is missing! Please set it in .env or environment variables.")
+    logger.critical("TELEGRAM_BOT_TOKEN is missing!")
     sys.exit(1)
 
-# Sanitize BOT_NAME
 import re
 if not BOT_NAME or not re.match(r'^[a-zA-Z0-9_]{5,32}$', BOT_NAME):
     BOT_NAME = "ItransitionProjectBot"
@@ -194,7 +192,7 @@ Send /check to run a validation now!
             await self.send_message(chat_id, welcome)
             
         elif command == "/check":
-            await self.send_message(chat_id, "Running data quality checks... Please wait.")
+            # await self.send_message(chat_id, "Running data quality checks... Please wait.")
             
             result = self.run_validation()
             report = self.format_report(result)
