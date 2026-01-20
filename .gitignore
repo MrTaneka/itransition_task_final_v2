@@ -42,3 +42,14 @@ Thumbs.db
 # Do NOT commit API keys
 *api_key*
 *secret*
+
+# Generated Exports
+additional_tasks/power_automate/exports/
+*.json
+!additional_tasks/power_automate/sample_output.json
+!additional_tasks/grafana/provisioning/dashboards/nyc_weather.json
+
+# Local Dev / Deployment
+FLOW_SETUP.md
+Procfile
+additional_tasks/requirements.txt

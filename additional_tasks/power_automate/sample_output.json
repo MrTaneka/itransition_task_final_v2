@@ -1,0 +1,64 @@
+{
+    "metadata": {
+        "export_timestamp": "2025-10-14T21:30:00.000000",
+        "export_date": "2025-10-14",
+        "export_time": "21:30:00",
+        "period": "2025-10",
+        "row_count": 100,
+        "source": "Microsoft Fabric Gold Layer",
+        "table": "FactTaxiDaily"
+    },
+    "summary": {
+        "total_trips": 245678,
+        "total_revenue_usd": 4982341.56,
+        "total_passengers": 456789,
+        "avg_fare_usd": 32.45,
+        "avg_trip_distance_miles": 4.8,
+        "unique_pickup_zones": 198,
+        "unique_dropoff_zones": 203,
+        "min_date_key": 20251001,
+        "max_date_key": 20251031
+    },
+    "top_records": [
+        {
+            "date": "20251015",
+            "pickup_zone": 138,
+            "trips": 4532,
+            "revenue": "$98,765.43",
+            "avg_fare": "$35.20"
+        },
+        {
+            "date": "20251022",
+            "pickup_zone": 161,
+            "trips": 3987,
+            "revenue": "$87,654.32",
+            "avg_fare": "$33.50"
+        },
+        {
+            "date": "20251008",
+            "pickup_zone": 237,
+            "trips": 3654,
+            "revenue": "$76,543.21",
+            "avg_fare": "$31.80"
+        },
+        {
+            "date": "20251029",
+            "pickup_zone": 79,
+            "trips": 3421,
+            "revenue": "$65,432.10",
+            "avg_fare": "$29.90"
+        },
+        {
+            "date": "20251003",
+            "pickup_zone": 186,
+            "trips": 3198,
+            "revenue": "$54,321.09",
+            "avg_fare": "$28.40"
+        }
+    ],
+    "notification": {
+        "title": "Taxi Data Report - 2025-10",
+        "message": "New taxi data export available with 100 records.",
+        "priority": "normal"
+    }
+}

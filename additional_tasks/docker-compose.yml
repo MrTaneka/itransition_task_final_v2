@@ -1,0 +1,66 @@
+version: '3.8'
+
+# ==============================================================================
+# Docker Compose: InfluxDB + Grafana Stack for Microsoft Fabric Integration
+#
+# This stack provides:
+# - InfluxDB 2.7: Time-series database for weather data
+# - Grafana 10.x: Visualization and dashboards
+#
+# Usage:
+#   docker-compose up -d
+#   Access Grafana: http://localhost:3000 (admin/admin)
+#   Access InfluxDB: http://localhost:8086 (admin/adminpassword)
+# ==============================================================================
+
+services:
+  # InfluxDB - Time Series Database
+  influxdb:
+    image: influxdb:2.7
+    container_name: fabric_influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpassword
+      - DOCKER_INFLUXDB_INIT_ORG=fabric_org
+      - DOCKER_INFLUXDB_INIT_BUCKET=weather_data
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=fabric-weather-token-2024
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8086/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Grafana - Visualization Platform
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: fabric_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  influxdb_data:
+  influxdb_config:
+  grafana_data:
+
+
+networks:
+  default:
+    name: fabric_network

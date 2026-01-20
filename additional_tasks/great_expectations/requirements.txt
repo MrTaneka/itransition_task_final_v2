@@ -1,0 +1,17 @@
+# Great Expectations Dependencies
+# ================================
+# Install with: pip install -r requirements.txt
+
+# Data handling
+pandas>=2.0.0
+pyarrow>=14.0.0
+
+# HTTP client for Telegram
+requests>=2.31.0
+
+# Optional: Full Great Expectations
+# great-expectations>=0.18.0
+
+# Type checking (development)
+mypy>=1.7.0
+types-requests>=2.31.0

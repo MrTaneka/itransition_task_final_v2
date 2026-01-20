@@ -1,0 +1,16 @@
+# Weather Ingestion Service Dependencies
+# =====================================
+# Install with: pip install -r requirements.txt
+
+# HTTP client with retry support
+requests>=2.31.0
+
+# InfluxDB client for time-series data
+influxdb-client>=1.38.0
+
+# Scheduler for periodic execution
+APScheduler>=3.10.4
+
+# Type checking (development)
+mypy>=1.7.0
+types-requests>=2.31.0

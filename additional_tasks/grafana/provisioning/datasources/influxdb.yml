@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      version: Flux
+      organization: fabric_org
+      defaultBucket: weather_data
+      tlsSkipVerify: true
+    secureJsonData:
+      token: fabric-weather-token-2024
+    isDefault: true
