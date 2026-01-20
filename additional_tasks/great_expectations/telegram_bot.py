@@ -26,13 +26,20 @@ try:
     config = AppConfig()
     BOT_TOKEN = config.telegram.bot_token
     BOT_NAME = config.telegram.bot_name
-except Exception:
-    BOT_TOKEN = "8498197857:AAGJeCZopf9ZCW29Au_KEKuJv2eXZi0rMcU"
-    BOT_NAME = "ItransitionProjectBot"
+except ImportError:
+    import os
+    BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    BOT_NAME = os.getenv("TELEGRAM_BOT_NAME", "ItransitionProjectBot")
 
-# Verify token is not empty
+# Strict validation - Fail if no token found
 if not BOT_TOKEN:
-    BOT_TOKEN = "8498197857:AAGJeCZopf9ZCW29Au_KEKuJv2eXZi0rMcU"
+    logger.critical("TELEGRAM_BOT_TOKEN is missing! Please set it in .env or environment variables.")
+    sys.exit(1)
+
+# Sanitize BOT_NAME
+import re
+if not BOT_NAME or not re.match(r'^[a-zA-Z0-9_]{5,32}$', BOT_NAME):
+    BOT_NAME = "ItransitionProjectBot"
 
 
 class DataQualityBot:
