@@ -49,7 +49,5 @@ additional_tasks/power_automate/exports/
 !additional_tasks/power_automate/sample_output.json
 !additional_tasks/grafana/provisioning/dashboards/nyc_weather.json
 
-# Local Dev / Deployment
+# Local Dev
 FLOW_SETUP.md
-Procfile
-additional_tasks/requirements.txt
